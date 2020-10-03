@@ -7,8 +7,8 @@ private String firstName;
 private String middleName;
 private String lastName;
 private String ssn;
-private double checkingAccount;
-private double savingsAccount;
+private CheckingAccount checkingAccount;
+private SavingsAccount savingsAccount;
 
 //default constructor
 	public AccountHolder(){
@@ -16,9 +16,7 @@ private double savingsAccount;
 	middleName = "";
 	lastName = "";
 	ssn = "";
-	checkingAccount = 0.0;
-	savingsAccount = 0.0;
-		
+
 	}
 	
 	//constructor 
@@ -28,8 +26,8 @@ private double savingsAccount;
 		this.middleName = middleName;
 		this.lastName= lastName;
 		this.ssn = ssn;
-		this.checkingAccount = checkingAccountOpeningBalance;
-		this.savingsAccount = savingsAccountOpeningBalance;
+		checkingAccount = new CheckingAccount(checkingAccountOpeningBalance);
+		savingsAccount = new SavingsAccount(savingsAccountOpeningBalance);
 	}
 	
 	
@@ -68,7 +66,7 @@ private double savingsAccount;
 	public void setSSN(String ssn) {
 		this.ssn = ssn;
 	}
-	public checkingAccount getCheckingAccount() {
+	public CheckingAccount getCheckingAccount() {
 		return checkingAccount;
 	}
 	
@@ -79,8 +77,13 @@ private double savingsAccount;
 	public String toString() {
 		String str = "1. Name: " + firstName + " " + middleName + " " + lastName + 
 					"\n2. SSN: " + ssn + 
-					"\n3. Checking Account Balance:" + checkingAccount + 
-					"\n4. Checking Account Interest Rate: " + Sa;
+					"\n3. Checking Account Balance: $" + checkingAccount.getBalance() + 
+					"\n4. Checking Account Interest Rate: " + String.format("%,.4f", checkingAccount.getInterestRate()) + 
+					"\n5. Checking Account Balance in 3 Years: " + String.format("$%,.2f", checkingAccount.futureValue(3)) +
+					"\n6. Savings Account Balance: $" + savingsAccount.getBalance() +
+					"\n7. Savings Account Interest Rate: " + savingsAccount.getInterestRate() +
+					"\n8. Savings Account Balance in 3 Years: $" + String.format("$%,.2f", savingsAccount.futureValue(3));
+		return str;
 		
 		
 		

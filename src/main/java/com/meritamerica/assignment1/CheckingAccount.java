@@ -41,10 +41,12 @@ public class CheckingAccount {
 	public boolean withdraw(double amount) {
 
 		if(amount <= Balance) {
+			Balance -= amount;
 
 			return true;
 
 		} else {
+			System.out.println("Cannot withdraw more than current balance.");
 
 			return false;
 
@@ -57,10 +59,13 @@ public class CheckingAccount {
 	public boolean deposit(double amount) {
 
 		if (amount >0) {
+			Balance += amount;
+			
 
 			return true;
 
 		} else {
+			System.out.println("Cannot deposit negative amounts.");
 
 			return false;
 
@@ -84,9 +89,9 @@ public class CheckingAccount {
 
 		String str= "1.Checking Account Balance: $" + Balance +
 
-				"\n 2.Checking Account Interest Rate: $" + InterestRate +
+				"\n 2.Checking Account Interest Rate: " + String.format("%,.4f", InterestRate) +
 
-				"\n 3. Checking Account Balance in 3 years: $" + futureValue(3);
+				"\n 3. Checking Account Balance in 3 years: " + String.format("$%,.2f", futureValue(3));
 
 		return str;
 

@@ -18,15 +18,19 @@ public class SavingsAccount {
 	}
 	public boolean withdraw(double amount) {
 		if (amount <= balance) {
+			balance -= amount;
 			return true;
 		} else {
+			System.out.println("Cannot withdraw more than current balance.");
 			return false;
 		}
 	}
 	public boolean deposit(double amount) {
 		if(amount>0) {
+			balance += amount;
 			return true;
 		} else {
+			System.out.println("Cannot deposit negative amounts");
 			return false;
 		}
 	}
@@ -39,7 +43,7 @@ public class SavingsAccount {
 	public String toString() {
 		String str = "1. Savings Account Balance: $" + balance + 
 				"\n2. Savings Account Interest Rate: " + interestRate + 
-				"\n3.Savings Account Balance in 3 years: $" + futureValue(3);
+				"\n3.Savings Account Balance in 3 years: " + String.format("$%,.2f", futureValue(3));
 		return str;
 	}
 }
